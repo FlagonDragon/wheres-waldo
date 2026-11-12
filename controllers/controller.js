@@ -8,11 +8,11 @@ function homeGet(req, res) {
 
 async function picturePost(req, res) {
 
-  const { title, height, width } = req.body;
+  const { title, width, height  } = req.body;
 
   try {
 
-    await db.createPicture(title, height, width);
+    await db.createPicture(title, width, height);
 
     res.status(200).json({ message: "Picture created succesfully!" });
 
@@ -46,11 +46,11 @@ async function pictureIdGet(req, res) {
 
 async function targetPost(req, res) {
 
-  const { name, coordX, coordY, pictureId } = req.body;
+  const { name, coordX1, coordX2, coordY1, coordY2, pictureId } = req.body;
 
   try {
 
-    await db.createTarget(name, coordX, coordY, pictureId);    
+    await db.createTarget(name, coordX1, coordX2, coordY1, coordY2, pictureId);    
 
     res.status(200).json({ message: "Target created succesfully!" });
 
@@ -63,6 +63,7 @@ async function targetPost(req, res) {
 };
 
 export default {
+    homeGet,
     pictureGet,
     picturePost,
     pictureIdGet,

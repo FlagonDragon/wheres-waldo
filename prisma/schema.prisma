@@ -15,16 +15,18 @@ datasource db {
 model Picture { 
   id    Int     @id @default(autoincrement()) 
   title String  @unique
-  height Int
   width Int
+  height Int
   targets Target[]
 } 
 
 model Target {
   id    Int     @id @default(autoincrement())
   name  String
-  coordX Int
-  coordY Int
+  coordX1 Int
+  coordX2 Int
+  coordY1 Int
+  coordY2 Int
   picture    Picture    @relation(fields: [pictureId], references: [id]) 
   pictureId  Int
 } 

@@ -8,13 +8,13 @@ async function getPictures() {
   
 }
 
-async function createPicture(title, height, width) {
+async function createPicture(title, width, height ) {
 
   const picture = await prisma.picture.create({
     data: {
       title: title,
-      height: height,
-      width: width,
+      width: Number(width),
+      height: Number(height),
     },
   });
 
@@ -32,13 +32,15 @@ async function getTargets(pictureId) {
   
 }
 
-async function createTarget(name, coordX, coordY, pictureId) {
+async function createTarget(name, coordX1, coordX2, coordY1, coordY2, pictureId) {
 
   const target = await prisma.target.create({
     data: {
       name: name,
-      coordX: coordX,
-      coordY: coordY,
+      coordX1: Number(coordX1),
+      coordX2: Number(coordX2),
+      coordY1: Number(coordY1),
+      coordY2: Number(coordY2),
       pictureId: Number(pictureId),
     },
   });
