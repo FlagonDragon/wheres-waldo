@@ -12,17 +12,19 @@ datasource db {
   provider = "postgresql"
 }
 
-model User { 
+model Picture { 
   id    Int     @id @default(autoincrement()) 
-  email String  @unique
-  name  String?
-  posts Post[]
+  title String  @unique
+  height Int
+  width Int
+  targets Target[]
 } 
-model Post { 
-  id        Int     @id @default(autoincrement()) 
-  title     String
-  content   String?
-  published Boolean @default(false) 
-  author    User    @relation(fields: [authorId], references: [id]) 
-  authorId  Int
-}
+
+model Target {
+  id    Int     @id @default(autoincrement())
+  name  String
+  coordX Int
+  coordY Int
+  picture    Picture    @relation(fields: [pictureId], references: [id]) 
+  pictureId  Int
+} 
