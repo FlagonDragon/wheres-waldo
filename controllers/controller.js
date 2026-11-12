@@ -6,6 +6,16 @@ function homeGet(req, res) {
 
 };
 
+async function pictureGet(req, res) {
+
+    const pictures = await db.getPictures();
+
+    console.log(pictures);
+
+    return res.send(pictures);
+
+}
+
 async function picturePost(req, res) {
 
   const { title, width, height  } = req.body;
@@ -24,16 +34,6 @@ async function picturePost(req, res) {
 
 };
 
-async function pictureGet(req, res) {
-
-    const pictures = await db.getPictures();
-
-    console.log(pictures);
-
-    return res.send(pictures);
-
-}
-
 async function pictureIdGet(req, res) {
 
   const { pictureId } = req.params;
@@ -47,6 +47,8 @@ async function pictureIdGet(req, res) {
 async function targetPost(req, res) {
 
   const { name, coordX1, coordX2, coordY1, coordY2, pictureId } = req.body;
+
+  console.log(req.body);
 
   try {
 
@@ -62,10 +64,33 @@ async function targetPost(req, res) {
 
 };
 
+async function checkOptionPost(req, res) {
+
+  const { pictureTitle, targetName, coordX, coordY } = req.body;
+
+  console.log(coordX, coordY);
+  
+  console.log(req.body);
+
+  try {
+
+    const target = await db.getTarget(pictureTitle, targetName);
+
+    return res.send(target);
+
+  } catch(error) {
+
+    return res.status(500).send(error);
+
+  }
+
+};
+
 export default {
     homeGet,
     pictureGet,
     picturePost,
     pictureIdGet,
-    targetPost
+    targetPost,
+    checkOptionPost
 }

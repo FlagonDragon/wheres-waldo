@@ -11,6 +11,8 @@ router.post("/picture", controller.picturePost);
 router.get("/picture/:pictureId", controller.pictureIdGet);
 router.post("/target", controller.targetPost);
 
+router.post("/check-option", controller.checkOptionPost);
+
 export {
     router
 };

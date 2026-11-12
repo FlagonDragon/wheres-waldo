@@ -22,6 +22,30 @@ async function createPicture(title, width, height ) {
   
 }
 
+async function getTarget(pictureTitle, targetName) {
+
+  const picture = await prisma.picture.findUnique({
+    where: { title: pictureTitle },
+  });
+
+  console.log('Picture is: ', picture);
+
+  console.log(targetName);
+  console.log(picture.id);
+  
+  const target = await prisma.target.findMany({
+    where: { 
+      name: targetName,
+      pictureId: picture.id,  
+    },
+  });
+
+  console.log('Target is: ', target);
+
+  return target;
+  
+}
+
 async function getTargets(pictureId) {
 
   const targets = await prisma.target.findMany({
@@ -34,6 +58,8 @@ async function getTargets(pictureId) {
 
 async function createTarget(name, coordX1, coordX2, coordY1, coordY2, pictureId) {
 
+  console.log(arguments);
+  
   const target = await prisma.target.create({
     data: {
       name: name,
@@ -52,6 +78,7 @@ async function createTarget(name, coordX1, coordX2, coordY1, coordY2, pictureId)
 export default {
     getPictures,
     createPicture,
+    getTarget,
     getTargets,
     createTarget,
 }
