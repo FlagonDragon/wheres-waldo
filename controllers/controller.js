@@ -67,16 +67,29 @@ async function targetPost(req, res) {
 async function checkOptionPost(req, res) {
 
   const { pictureTitle, targetName, coordX, coordY } = req.body;
-
-  console.log(coordX, coordY);
   
-  console.log(req.body);
+  // console.log(req.body);
 
   try {
 
     const target = await db.getTarget(pictureTitle, targetName);
 
-    return res.send(target);
+    // console.log('coordX: '+coordX);
+    // console.log('Target coordX1: '+target[0].coordX1);
+    // console.log('Target coordX2: '+target[0].coordX2);
+    // console.log(coordX >= target[0].coordX1 );
+    // console.log(coordX <= target[0].coordX2);
+
+    if (
+      coordX >= target[0].coordX1 
+      && coordX <= target[0].coordX2
+      && coordY >= target[0].coordY1 
+      && coordY <= target[0].coordY2
+    ) {
+      return res.json({ message: "Right on the mark!" }); 
+    } else {
+      return res.json({ message: "A swing and a miss!" });
+    }
 
   } catch(error) {
 
