@@ -30,3 +30,9 @@ model Target {
   picture    Picture    @relation(fields: [pictureId], references: [id]) 
   pictureId  Int
 } 
+
+model Highscore {
+  id    Int     @id @default(autoincrement())
+  name  String
+  time Int
+} 

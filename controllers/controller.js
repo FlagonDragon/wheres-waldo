@@ -2,7 +2,7 @@ import db from '../db/queries.js';
 
 function homeGet(req, res) {
 
-    res.send('Homepage');
+  res.send('Homepage');
 
 };
 
@@ -99,11 +99,41 @@ async function checkOptionPost(req, res) {
 
 };
 
+async function highscoreGet(req, res) {
+
+  const highscores = await db.getHighscores();
+
+  console.log(highscores);
+
+  return res.send(highscores);
+
+}
+
+async function highscorePost(req, res) {
+
+  const { name, time  } = req.body;
+
+  try {
+
+    await db.createHighscore(name, time);
+
+    res.status(200).json({ message: "Highscore created succesfully!" });
+
+  } catch(error) {
+
+    return res.status(500).json({ error });
+
+  }
+
+};
+
 export default {
-    homeGet,
-    pictureGet,
-    picturePost,
-    pictureIdGet,
-    targetPost,
-    checkOptionPost
+  homeGet,
+  pictureGet,
+  picturePost,
+  pictureIdGet,
+  targetPost,
+  checkOptionPost,
+  highscoreGet,
+  highscorePost
 }

@@ -13,6 +13,10 @@ router.post("/target", controller.targetPost);
 
 router.post("/check-option", controller.checkOptionPost);
 
+router.get("/highscore", controller.highscoreGet);
+router.post("/highscore", controller.highscorePost);
+
+
 export {
     router
 };
