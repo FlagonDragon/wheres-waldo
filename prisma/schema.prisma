@@ -18,6 +18,7 @@ model Picture {
   width Int
   height Int
   targets Target[]
+  highscores Highscore[]
 } 
 
 model Target {
@@ -35,4 +36,6 @@ model Highscore {
   id    Int     @id @default(autoincrement())
   name  String
   time Int
+  picture    Picture    @relation(fields: [pictureId], references: [id]) 
+  pictureId  Int @default(1)
 } 

@@ -77,18 +77,21 @@ async function createTarget(name, coordX1, coordX2, coordY1, coordY2, pictureId)
 
 async function getHighscores() {
 
-  const highscores = await prisma.highscore.findMany();
+  const highscores = await prisma.highscore.findMany({
+  orderBy: { time: "asc" },
+  });
 
   return highscores;
   
 }
 
-async function createHighscore(name, time) {
+async function createHighscore(name, time, pictureId) {
 
   const highscore = await prisma.highscore.create({
     data: {
       name: name,
       time: Number(time),
+      pictureId: Number(pictureId)
     },
   });
 

@@ -111,11 +111,11 @@ async function highscoreGet(req, res) {
 
 async function highscorePost(req, res) {
 
-  const { name, time  } = req.body;
+  const { name, time, pictureId  } = req.body;
 
   try {
 
-    await db.createHighscore(name, time);
+    await db.createHighscore(name, time, pictureId);
 
     res.status(200).json({ message: "Highscore created succesfully!" });
 
