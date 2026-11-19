@@ -22,21 +22,21 @@ async function createPicture(title, width, height ) {
   
 }
 
-async function getTarget(pictureTitle, targetName) {
+async function getTarget(pictureId, targetName) {
 
-  const picture = await prisma.picture.findUnique({
-    where: { title: pictureTitle },
-  });
+  // const picture = await prisma.picture.findUnique({
+  //   where: { title: pictureTitle },
+  // });
 
-  console.log('Picture is: ', picture);
+  // console.log('Picture is: ', picture);
 
   console.log(targetName);
-  console.log(picture.id);
+  console.log(pictureId);
   
   const target = await prisma.target.findMany({
     where: { 
       name: targetName,
-      pictureId: picture.id,  
+      pictureId: pictureId,  
     },
   });
 
