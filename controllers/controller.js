@@ -66,13 +66,13 @@ async function targetPost(req, res) {
 
 async function checkOptionPost(req, res) {
 
-  const { pictureTitle, targetName, coordX, coordY } = req.body;
+  const { pictureId, targetName, coordX, coordY } = req.body;
   
   // console.log(req.body);
 
   try {
 
-    const target = await db.getTarget(pictureTitle, targetName);
+    const target = await db.getTarget(pictureId, targetName);
 
     // console.log('coordX: '+coordX);
     // console.log('Target coordX1: '+target[0].coordX1);
