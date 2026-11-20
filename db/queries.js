@@ -75,9 +75,12 @@ async function createTarget(name, coordX1, coordX2, coordY1, coordY2, pictureId)
   
 }
 
-async function getHighscores() {
+async function getHighscores(pictureId) {
 
   const highscores = await prisma.highscore.findMany({
+  where: { 
+    pictureId: Number(pictureId),  
+  },
   orderBy: { time: "asc" },
   });
 

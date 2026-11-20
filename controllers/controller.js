@@ -99,9 +99,11 @@ async function checkOptionPost(req, res) {
 
 };
 
-async function highscoreGet(req, res) {
+async function highscoreIdGet(req, res) {
 
-  const highscores = await db.getHighscores();
+  const { pictureId } = req.params;
+
+  const highscores = await db.getHighscores(pictureId);
 
   console.log(highscores);
 
@@ -134,6 +136,6 @@ export default {
   pictureIdGet,
   targetPost,
   checkOptionPost,
-  highscoreGet,
+  highscoreIdGet,
   highscorePost
 }
