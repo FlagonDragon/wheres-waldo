@@ -13,7 +13,7 @@ router.post("/target", controller.targetPost);
 
 router.post("/check-option", controller.checkOptionPost);
 
-router.get("/highscore", controller.highscoreGet);
+router.get("/highscore/:pictureId", controller.highscoreIdGet);
 router.post("/highscore", controller.highscorePost);
 
 
