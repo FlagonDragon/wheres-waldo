@@ -50,6 +50,7 @@ async function getTargets(pictureId) {
 
   const targets = await prisma.target.findMany({
     where: { pictureId: Number(pictureId) },
+    orderBy: { id: "asc" },
   });
 
   return targets;
